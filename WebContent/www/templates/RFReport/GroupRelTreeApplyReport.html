@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="GBK">
+    <title>集团家谱维护申请信息报告</title>
+    <style>
+        table.cr010 {
+            border: 1px solid #5d5d5d;
+            margin: 0;
+            border-collapse: collapse;
+            width: 650px;
+            font-size: 12px;
+            padding: 8px;
+        }
+
+        table.cr010 td {
+            padding: 5px;
+            border: 1px solid #7b7b7b;
+            text-align: "center";
+        }
+
+        /*1级标题样式*/
+
+        td.tdtit {
+            height: 40px;
+            padding: 20px;
+            font-weight: bold;
+            vertical-align: middle;
+            text-align: left;
+            font-size: 14px;
+
+        }
+
+        /*2级标题样式*/
+
+        .tbg1 {
+            background-color: #cfdbee;
+            font-size: 14px
+        }
+
+        /*3级标题样式*/
+
+        .tbg2 {
+            background-color: #d8f4f1;
+            font-size: 14px
+        }
+
+        /*单个TD标签CLASS内 加写 text1 特定td宽度为 10% */
+
+        table.cr010 td.text1 {
+            width: 10%;
+        }
+
+        /*单个TD标签CLASS内 加写 text1 特定td宽度为 55% */
+
+        table.cr010 td.text2 {
+            width: 55%
+        }
+
+        /*单个TD标签CLASS内 加写 txtR 文本右对齐*/
+
+        table.cr010 td.txtR {
+            text-align: right
+        }
+
+        /*单个TD标签CLASS内 加写 txtL 文本左对齐*/
+
+        table.cr010 td.txtL {
+            text-align: left
+        }
+
+        /*单个TD标签CLASS内 加写 txtM 文本居中对齐*/
+
+        table.cr010 td.txtM {
+            text-align: center
+        }
+
+        /*单个TR标签CLASS内 加写 lineheight 文本行高亮*/
+
+        tr.lineheight {
+            background-color: #cccccc
+        }
+
+        .input_text {
+            border-color: #000000 #000000 black black;
+            border-style: solid;
+            border-top-width: 0px;
+            border-right-width: 0px;
+            border-bottom-width: 1px;
+            border-left-width: 0px;
+        }
+
+        td.dtit {
+            padding: 20px;
+            font-weight: bold;
+            vertical-align: middle;
+            font-size: 30px;
+        }
+
+        td.dtit1 {
+            padding: 20px;
+            font-weight: bold;
+            vertical-align: middle;
+
+            font-size: 14px;
+        }
+
+        /* /*p标签 文本自动换行*/
+
+        .words {
+            word-break: break-all
+        }
+
+        */
+    </style>
+</head>
+
+<body>
+    <table border="1" class="cr010">
+        <tr>
+            <td colspan="6" class="tdtit">
+                <b>{{reportInfo.param0}}集团家谱维护申请信息报告</b>
+            </td>
+        </tr>
+        <!-- Loop Start:extobj -->
+
+        <tr colspan="6">
+            <td>
+                <table border="1" class="cr010" ng-repeat="jbo in reportInfo.extobj">
+                    <tr>
+                        <!-- <td colspan="2" class="txtL">成员名称 {{jbo.attr0}}</td> -->
+                        <td colspan="2" class="txtL">成员名称 </td>
+                        <td colspan="2">{{jbo.attr1}}</td>
+                        <td class="txtL">法人代表</td>
+                        <td>{{jbo.attr3}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="txtL">实际控制人</td>
+                        <td colspan="4">{{jbo.attr4}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="txtL">股东</td>
+                        <td colspan="4">{{jbo.attr5}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" class="txtM">授信情况</td>
+                    </tr>
+                    <tr>
+                        <td>额度编号</td>
+                        <td>授信金额</td>
+                        <td>敞口金额</td>
+                        <td>期限</td>
+                        <td>额度起始日期</td>
+                        <td>额度到期日期</td>
+                    </tr>
+                    <!-- SubLoop Start:extobj.creditconds -->
+                    <tr ng-repeat="credit in reportInfo.extobj.creditconds">
+                        <td>{{credit.attr0}}</td>
+                        <td>{{credit.attr1}}</td>
+                        <td>{{credit.attr2}}</td>
+                        <td>{{credit.attr3}}</td>
+                        <td>{{credit.attr4}}</td>
+                        <td>{{credit.attr5}}</td>
+                    </tr>
+                    <!-- SubLoop End:extobj.creditconds -->
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="txtL">贷款金额</td>
+                        <td>{{jbo.attr6}}</td>
+                        <td colspan="2" class="txtL">加入原因</td>
+                        <td colspan="2">{{jbo.attr2}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="6">&nbsp;</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+        <!-- Loop End:extobj -->
+        <tr>
+            <td colspan="6" class=txtL>
+                <p>本次申请认定/解除关联理由：</p>
+                <textarea id="param1" name="param1" style="width:100%; height: 100px">{{reportInfo.param1}}</textarea>
+                <br>
+                <p>主办客户经理：{{reportInfo.userID}}</p>
+            </td>
+        </tr>
+    </table>
+
+
+</body>
+
+</html>

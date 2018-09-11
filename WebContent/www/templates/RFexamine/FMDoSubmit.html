@@ -1,0 +1,99 @@
+<!--提交-->
+<div class="modal_father"></div>
+<ion-modal-view class="modal_view" ng-controller="SubimtToNextPhaseController">
+    <ion-header-bar align-title="center" class="bar-positive">
+        <div>
+            <button class="button button-clear" ng-click="hideModal()">
+                <i class="ion ion-close" style="font-size: 20px;margin-left: 10px;margin-top: 12px;color:#fff"></i>
+            </button>
+        </div>
+        <h4 class="title">下一阶段动作选择</h4>
+    </ion-header-bar>
+    <ion-content class="gray-main">
+        <!--</div>-->
+        <ul class="checkList">
+            <li>
+                <div class="am-label">提交动作选择：</div>
+            </li>
+            <li class="showActionUser" ng-repeat="Action in NextActions" ng-click="showActionUser(Action)">
+                <input name="nextActionItem" class="am-checkbox submit_input" type="radio" id="{{Action.id}}" />
+                <div class="checkLabel">{{Action.NextPhaseAction}}</div>
+            </li>
+
+            <div ng-if="!ActionListFlag">
+                <li ng-show="showUsers">
+                    <div class="am-label">{{ActionSet}}</div>
+                </li>
+                <ion-scroll has-bouncing="false" style="width:100%;margin-left:5%;height:60px;" direction="y">
+                    <div style="height:100px;" class="bar-subheader am-sub-header">
+    
+                        <li ng-show="NodeType!='DISTRIBUTE'" ng-repeat="user in ActionUsers" ng-click="ActionUserChoose(user)">
+                            <input name="nextActionOperatorItem" class="am-checkbox" type="radio" id="{{user.id}}">
+                            <div class="checkLabel">{{user.UserStr}}</div>
+                        </li>
+                        <h3 class="am-button" ng-show="userFlag&&showUsers&&NodeType!='DISTRIBUTE'" style="text-align:center;">
+                            <span style="color:red;">{{errMsg}}</span>
+                        </h3>
+                    </div>
+    
+                </ion-scroll>
+            </div>
+
+            <!-- 多部分联合主审 -->
+            <div ng-if="ActionListFlag">
+                <li ng-show="showUsers">
+                    <div class="am-label">{{ActionSet}}</div>
+                </li>
+                <ion-scroll has-bouncing="false" style="width:100%;margin-left:5%;height:60px;" direction="y">
+                    <div style="height:100px;" class="bar-subheader am-sub-header">
+    
+                        <li ng-show="NodeType!='DISTRIBUTE'" ng-repeat="action0 in ActionList0" ng-click="ActionUserChoose(action0)">
+                            <input name="nextActionOperatorItem0" class="am-checkbox" type="radio" id="{{action0.UserID}}">
+                            <div class="checkLabel">{{action0.UserStr}}</div>
+                        </li>
+                        <h3 class="am-button" ng-show="userFlag&&showUsers&&NodeType!='DISTRIBUTE'" style="text-align:center;">
+                            <span style="color:red;">{{errMsg}}</span>
+                        </h3>
+                    </div>
+    
+                </ion-scroll>
+    
+                <li ng-show="showUsers">
+                    <div class="am-label">{{ActionSet0}}</div>
+                </li>
+                <ion-scroll has-bouncing="false" style="width:100%;margin-left:5%;height:60px;" direction="y">
+                    <div style="height:100px;" class="bar-subheader am-sub-header">
+    
+                        <li ng-show="NodeType!='DISTRIBUTE'" ng-repeat="action1 in ActionList1" ng-click="ActionUserChoose(action1)">
+                            <input name="nextActionOperatorItem1" class="am-checkbox" type="radio" id="{{action1.UserID}}">
+                            <div class="checkLabel">{{action1.UserStr}}</div>
+                        </li>
+                        <h3 class="am-button" ng-show="userFlag&&showUsers&&NodeType!='DISTRIBUTE'" style="text-align:center;">
+                            <span style="color:red;">{{errMsg}}</span>
+                        </h3>
+                    </div>
+    
+                </ion-scroll>
+            </div>
+
+        </ul>
+        <dl class="am-list notice-list_a" ng-show="showUsers">
+            <dd>
+                <h3 class="am-button" style="text-align:center;">
+                    <span style="color:red;">{{nextPhaseInfo}}</span>
+                </h3>
+            </dd>
+        </dl>
+
+    </ion-content>
+    <ion-footer-bar>
+
+        <div class="col ">
+            <button type="button" class="examine-button-red" ng-click="hideModal()">放弃</button>
+        </div>
+        <div class="col">
+            <button type="button" class="examine-button-blue" ng-click="submit()">提交</button>
+        </div>
+
+    </ion-footer-bar>
+</ion-modal-view>
